@@ -1,0 +1,140 @@
+/* Sidebar styling */
+.owner-badge {
+    background-color: #333;
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 8px 16px;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    padding-top: 20px;
+    z-index: 1; /* Ensures sidebar stays above main content */
+}
+
+.sidebar-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sidebar a {
+    color: #fff;
+    padding: 15px 20px;
+    font-size: 1.2rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar a:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Active menu item styling */
+.sidebar a.active {
+    background-color: #fff;
+    color: #000;
+    font-weight: bold;
+    border-radius: 25px 0 0 25px; /* Rounded end on the left */
+    padding-left: 20px; /* Adjust padding for visual alignment */
+    margin-left: 10px; /* Add margin to separate from sidebar edge */
+}
+
+/* Main content area */
+.navbar-container {
+    margin-left: 250px; /* Aligns with sidebar width */
+    padding: 20px; /* Adds padding around the main content */
+    padding-top: 80px; /* Space for navbar height */
+    width: calc(100% - 250px);
+    box-sizing: border-box; /* Ensures padding doesn’t cause overflow */
+}
+
+/* Navbar styling */
+.navbar {
+    height: 60px;
+    background-color: #fff;
+    padding: 0 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0.1, 0.2);
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 250px; /* Aligns navbar with sidebar */
+    width: calc(100% - 250px);
+    z-index: 2; /* Ensures navbar stays above main content */
+}
+
+.navbar h1 {
+    font-size: 1.8rem;
+}
+
+.navbar .right-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar .btn-outline-dark {
+    font-size: 0.9rem;
+    padding: 5px 10px;
+}
+
+.navbar .dropdown-toggle::after {
+    display: none;
+}
+
+.navbar .dropdown-menu {
+    left: auto;
+    right: 0;
+}
+
+.navbar .fa-cog {
+    font-size: 1.5rem;
+    color: #333;
+    cursor: pointer;
+}
+
+.navbar .fa-cog:hover {
+    color: #000;
+}
+
+/* Language toggle styling */
+.language-toggle {
+    display: inline-flex;
+    align-items: center;
+    background-color: #000;
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 2px;
+}
+
+.lang-btn {
+    border: none;
+    padding: 5px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    border-radius: 20px;
+    color: #000;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.lang-btn.active {
+    background-color: #000;
+    color: #fff;
+}
