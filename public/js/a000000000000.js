@@ -99,7 +99,7 @@ $(document).ready(function () {
             const newStatus = !isBlocked;
             $(`#company-${id} .blocked-status`).text(newStatus ? 'Yes' : 'No');
             button.text(newStatus ? 'Unblock' : 'Block')
-                  .toggleClass("btn-secondary btn-warning", false)
+                  .toggleClass("btn-secondary", false)
                   .prop("disabled", false)
                   .attr("onclick", `toggleCompanyBlock(${id}, ${newStatus})`);
 
@@ -109,7 +109,7 @@ $(document).ready(function () {
 
             // Reset UI on error
             button.text(isBlocked ? 'Unblock' : 'Block')
-                  .toggleClass("btn-warning btn-secondary", false)
+                  .toggleClass("btn-secondary", false)
                   .prop("disabled", false);
         }
     };

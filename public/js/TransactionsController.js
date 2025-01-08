@@ -7,8 +7,6 @@ $(document).ready(() => {
 
     // Determine language
     const language = localStorage.getItem("language") || "en";
-
-    // Translations
     const translations = {
         en: {
             income: "Income",
@@ -36,30 +34,26 @@ $(document).ready(() => {
         }
     };
 
-    const t = translations[language]; // Get translations based on the current language
-
+    const t = translations[language];
     const fetchTransactions = (type = "all", date = null, unpaid = "none") => {
         $.ajax({
-            url: `/api/${companyId}/transactions`, // Replace companyId dynamically
+            url: `/api/${companyId}/transactions`,
             method: "GET",
             success: (data) => {
                 let transactions = data.transactions;
     
-                // Filter by type (income or outcome)
                 if (type === "income" || type === "outcome") {
                     transactions = transactions.filter(
                         (transaction) => transaction.type_of_trans === type
                     );
                 }
     
-                // Filter by specific date if provided
                 if (date) {
                     transactions = transactions.filter(
                         (transaction) => transaction.due_date === date
                     );
                 }
     
-                // Filter by unpaid status
                 if (unpaid === "today") {
                     const today = new Date().toISOString().split("T")[0];
                     transactions = transactions.filter(
@@ -67,7 +61,6 @@ $(document).ready(() => {
                             !transaction.paid && transaction.due_date === today
                     );
     
-                    // Update unpaid count display for today
                     const unpaidTodayCount = transactions.length;
                     $("#unpaidCountLabel").text(
                         `${t.unpaidToday} ${unpaidTodayCount}`
@@ -135,11 +128,6 @@ $(document).ready(() => {
                         }">
                             <i class="fa-solid fa-trash"></i> ${t.delete}
                         </button>
-                        <button style="font-size: 1rem; padding: 8px 10px;" class="btn btn-secondary btn-lg invoice-btn" data-id="${
-                            transaction.id
-                        }">
-                            <i class="fa-solid fa-file-invoice"></i> ${t.invoice}
-                        </button>
                         <button style="font-size: 1rem; padding: 8px 10px;" class="btn btn-primary btn-lg paid-btn" data-id="${
                             transaction.transaction_id
                         }">
@@ -203,18 +191,13 @@ $(document).ready(() => {
         fetchTransactions(currentFilter);
     });
 
-    // Delete and invoice actions
+    // Delete transaction event listener
     transactionTableBody.on("click", ".delete-btn", async function () {
         const transactionId = $(this).data("id");
         if (confirm("Are you really want to delete this transaction?")) {
             await deleteTransaction(transactionId);
             fetchTransactions(currentFilter); // Use the current filter to refresh the list
         }
-    });
-
-    transactionTableBody.on("click", ".invoice-btn", function () {
-        const transactionId = $(this).data("id");
-        // Code to handle invoice action here
     });
 
     // Mark as Paid
@@ -273,9 +256,8 @@ $(document).ready(() => {
         const type = $("#type").val();
         const name = $("#clientName").val();
         const phone = $("#clientPhone").val();
-        const date = $("#transactionDate").val(); // Get the date from the input field
-
-        // Prepare the data to send, only include date if it's provided
+        const date = $("#transactionDate").val(); 
+        
         const data = {
             amount,
             details,
