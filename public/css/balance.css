@@ -1,0 +1,121 @@
+/* Global Settings */
+body {
+    background-color: #f5f7fa;
+    font-family: 'Roboto', sans-serif;
+    color: #4a4a4a;
+}
+
+.content {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Statistics Section */
+.stats-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.stat {
+    flex: 1;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.stat:hover {
+    transform: scale(1.05);
+}
+
+.stat h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.stat .value {
+    font-size: 2.2rem;
+    font-weight: bold;
+}
+
+.bg-gradient-green {
+    background: linear-gradient(135deg, #4caf50, #388e3c);
+    color: #fff;
+}
+
+.bg-gradient-blue {
+    background: linear-gradient(135deg, #42a5f5, #1976d2);
+    color: #fff;
+}
+
+.bg-gradient-red {
+    background: linear-gradient(135deg, #ef5350, #d32f2f);
+    color: #fff;
+}
+
+/* Transactions Section */
+.transactions-section {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.chart {
+    flex: 1;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 25px; /* Increased padding */
+    transition: all 0.3s ease;
+    transform-origin: center; /* Smooth scaling from the center */
+}
+
+.chart:hover {
+    transform: scale(1.05); /* Hover effect */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+.chart h5 {
+    font-size: 1.3rem; /* Slightly larger header font */
+    font-weight: 600;
+    color: #333;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 12px; /* Adjusted padding */
+    margin-bottom: 20px; /* Increased spacing below header */
+}
+
+.transaction-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem; /* Slightly larger font size */
+    margin-bottom: 15px; /* Increased spacing between items */
+}
+
+.text-success {
+    color: #4caf50;
+}
+
+.text-danger {
+    color: #ef5350;
+}
+
+.stat, .chart {
+    flex: 1;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow */
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.stat:hover, .chart:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25); /* Stronger shadow on hover */
+}
