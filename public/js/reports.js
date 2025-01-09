@@ -13,9 +13,19 @@ $(document).ready(function () {
 
     // Dynamically generate table HTML
     function generateTable(data, reportType) {
-        let table = `<table class="table table-bordered"><thead><tr>`;
+        if (!Array.isArray(data) || data.length === 0) {
+            return `<p>No data available for this report.</p>`;
+        }
+    
+        let table = `
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>`;
+        
+        // Get headers from the keys of the first object
         const headers = Object.keys(data[0]);
-
+    
         // Adjust column names for specific reports
         const adjustedHeaders = headers.map((key) => {
             if (reportType === "income" || reportType === "clients") {
@@ -26,40 +36,67 @@ $(document).ready(function () {
             }
             return formatHeader(key);
         });
-
+    
         // Generate table headers
         adjustedHeaders.forEach((header) => {
             table += `<th>${header}</th>`;
         });
         table += `</tr></thead><tbody>`;
-
+    
         // Generate table rows
         data.forEach((item) => {
             table += `<tr>`;
             headers.forEach((key) => {
-                const value = item[key] !== null ? item[key] : "";
+                let value = item[key] !== null ? item[key] : "";
+                // Escape HTML special characters
+                value = String(value).replace(/</g, "&lt;").replace(/>/g, "&gt;");
                 table += `<td>${value}</td>`;
             });
             table += `</tr>`;
         });
-        table += `</tbody></table>`;
+    
+        table += `</tbody></table></div>`;
         return table;
     }
+    
 
     // Print table
     function printData(data, reportType) {
         const tableHtml = generateTable(data, reportType);
         const newWindow = window.open("", "_blank");
-        newWindow.document.write(
-            `<html><head><title>Report</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"></head><body>`
-        );
-        newWindow.document.write(tableHtml);
-        newWindow.document.write("</body></html>");
+        newWindow.document.write(`
+            <html>
+            <head>
+                <title>Report</title>
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+                <style>
+                    table {
+                        width: 100%;
+                        border-collapse: collapse;
+                    }
+                    table, th, td {
+                        border: 1px solid black;
+                    }
+                    th, td {
+                        padding: 8px;
+                        text-align: left;
+                    }
+                    th {
+                        background-color: #f2f2f2;
+                    }
+                </style>
+            </head>
+            <body>
+                ${tableHtml}
+            </body>
+            </html>
+        `);
         newWindow.document.close();
         newWindow.focus();
         newWindow.print();
         newWindow.close();
     }
+    
 
     // Download Excel
     function downloadExcel(data, reportType, filenamePrefix) {
