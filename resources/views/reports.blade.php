@@ -126,7 +126,7 @@
 
         <!-- Contractor Report -->
         <div class="report-section">
-            <div class="report-title">Contractor Report</div>
+            <div class="report-title">Contractors Report</div>
             <div class="row g-3">
                 <div class="col-md-6 filter-group">
                     <label for="contractorName">Name:</label>
@@ -141,7 +141,7 @@
 
         <!-- Client Report -->
         <div class="report-section">
-            <div class="report-title">Client Report</div>
+            <div class="report-title">Clients Report</div>
             <div class="row g-3">
                 <div class="col-md-6 filter-group">
                     <label for="clientName">Name:</label>
