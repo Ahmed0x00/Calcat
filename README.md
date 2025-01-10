@@ -240,4 +240,3 @@ Add a new transaction:
   - Email: `admin@gmail.com`  
   - Password: `123`  
 
-Enjoy using **Calcat** for your company's accounting and management needs!
